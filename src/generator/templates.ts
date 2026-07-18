@@ -33,6 +33,30 @@ export const TEMPLATES: TemplateMeta[] = [
     features: ['Servicios con duración', 'Selector fecha/hora', 'Lista de reservas', 'Estados: pendiente/confirmada', 'Recordatorio WhatsApp'],
     colorDemo: '#2563eb',
   },
+  {
+    id: 'tienda',
+    nombre: 'Tienda Online + Local',
+    descripcion: 'Vende por WhatsApp con catálogo online y cobra en tu local con POS, inventario y reportes.',
+    icono: '🏪',
+    features: ['Catálogo con fotos', 'Pedido WhatsApp o venta local', 'Inventario + agotados', 'Reportes del día', 'Descuentos'],
+    colorDemo: '#059669',
+  },
+  {
+    id: 'delivery',
+    nombre: 'Delivery / Comida',
+    descripcion: 'Carta digital con pedidos a domicilio: dirección de entrega y pedido directo al WhatsApp.',
+    icono: '🛵',
+    features: ['Carta con fotos', 'Dirección de entrega', 'Pedido por WhatsApp', 'Notas de cocina', 'Categorías'],
+    colorDemo: '#dc2626',
+  },
+  {
+    id: 'barberia',
+    nombre: 'Barbería / Salón',
+    descripcion: 'Reserva de horas online + caja para cobrar servicios y productos el mismo día.',
+    icono: '💈',
+    features: ['Reserva de horas', 'Cobro en caja', 'Recordatorio WhatsApp', 'Servicios y productos', 'Reportes'],
+    colorDemo: '#1d4ed8',
+  },
 ];
 
 export const DEFAULT_PRODUCTS: Record<TemplateId, ProductItem[]> = {
@@ -68,6 +92,30 @@ export const DEFAULT_PRODUCTS: Record<TemplateId, ProductItem[]> = {
     { id: 5, nombre: 'Limpieza Facial', precio: 25000, stock: 1, categoria: 'Estética', emoji: '🧖', descripcion: '75 minutos' },
     { id: 6, nombre: 'Masaje Relajante', precio: 28000, stock: 1, categoria: 'Estética', emoji: '💆', descripcion: '60 minutos' },
   ],
+  tienda: [
+    { id: 1, nombre: 'Polera Oversize Negra', precio: 12990, stock: 15, categoria: 'Ropa', emoji: '👕', descripcion: 'Algodón premium, tallas S-XL' },
+    { id: 2, nombre: 'Jeans Skinny Azul', precio: 19990, stock: 10, categoria: 'Ropa', emoji: '👖', descripcion: 'Denim stretch' },
+    { id: 3, nombre: 'Zapatillas Urbanas', precio: 34990, stock: 7, categoria: 'Calzado', emoji: '👟', descripcion: 'Suela antideslizante' },
+    { id: 4, nombre: 'Gorro Tejido', precio: 7990, stock: 20, categoria: 'Accesorios', emoji: '🧢', descripcion: 'Lana suave' },
+    { id: 5, nombre: 'Mochila Minimalista', precio: 24990, stock: 4, categoria: 'Accesorios', emoji: '🎒', descripcion: 'Impermeable 20L' },
+    { id: 6, nombre: 'Chaqueta Denim', precio: 29990, stock: 0, categoria: 'Ropa', emoji: '🧥', descripcion: 'Calce clásico' },
+  ],
+  delivery: [
+    { id: 1, nombre: 'Hamburguesa Clásica', precio: 5990, stock: 99, categoria: 'Burgers', emoji: '🍔', descripcion: 'Carne 150g, queso, tomate, papas' },
+    { id: 2, nombre: 'Churrasco Italiano', precio: 6500, stock: 99, categoria: 'Sandwiches', emoji: '🥪', descripcion: 'Palta, tomate, mayo casera' },
+    { id: 3, nombre: 'Pizza Familiar', precio: 9990, stock: 99, categoria: 'Pizzas', emoji: '🍕', descripcion: '8 porciones, 2 ingredientes' },
+    { id: 4, nombre: 'Papas Fritas Grandes', precio: 3500, stock: 99, categoria: 'Acompañamientos', emoji: '🍟', descripcion: 'Corte rústico' },
+    { id: 5, nombre: 'Bebida 1.5L', precio: 2500, stock: 99, categoria: 'Bebidas', emoji: '🥤', descripcion: 'Variedades' },
+    { id: 6, nombre: 'Empanada de Pino', precio: 2200, stock: 99, categoria: 'Sandwiches', emoji: '🥟', descripcion: 'Horno de barro' },
+  ],
+  barberia: [
+    { id: 1, nombre: 'Corte Clásico', precio: 10000, stock: 1, categoria: 'Cortes', emoji: '✂️', descripcion: '45 minutos' },
+    { id: 2, nombre: 'Corte + Barba', precio: 14000, stock: 1, categoria: 'Cortes', emoji: '💈', descripcion: '60 minutos' },
+    { id: 3, nombre: 'Fade / Diseño', precio: 12000, stock: 1, categoria: 'Cortes', emoji: '💇', descripcion: '50 minutos' },
+    { id: 4, nombre: 'Tintura de Barba', precio: 8000, stock: 1, categoria: 'Barba', emoji: '🎨', descripcion: '30 minutos' },
+    { id: 5, nombre: 'Pomada Matte', precio: 9000, stock: 8, categoria: 'Productos', emoji: '🧴', descripcion: 'Fijación fuerte' },
+    { id: 6, nombre: 'Aceite de Barba', precio: 7500, stock: 5, categoria: 'Productos', emoji: '🧴', descripcion: '30ml, aroma sándalo' },
+  ],
 };
 
 export const TEMPLATE_SECTIONS: Record<TemplateId, { sections: string[]; features: Record<string, boolean> }> = {
@@ -86,5 +134,17 @@ export const TEMPLATE_SECTIONS: Record<TemplateId, { sections: string[]; feature
   reservas: {
     sections: ['servicios', 'reservas', 'config'],
     features: { stock: false, cuotas: false, whatsappCheckout: true, reservas: true, carrito: false, buscador: false },
+  },
+  tienda: {
+    sections: ['catalogo', 'venta', 'inventario', 'reportes', 'config'],
+    features: { stock: true, cuotas: false, whatsappCheckout: true, reservas: false, carrito: true, buscador: true },
+  },
+  delivery: {
+    sections: ['menu', 'carrito', 'config'],
+    features: { stock: false, cuotas: false, whatsappCheckout: true, delivery: true, reservas: false, carrito: true, buscador: false },
+  },
+  barberia: {
+    sections: ['servicios', 'reservas', 'venta', 'config'],
+    features: { stock: false, cuotas: false, whatsappCheckout: true, reservas: true, carrito: true, buscador: false },
   },
 };
