@@ -29,17 +29,30 @@ export function buildIndexHtml(config: BusinessConfig): string {
 `;
 }
 
+function luminance(hex: string): number {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
 export function buildStyleCss(config: BusinessConfig): string {
+  const light = luminance(config.colorBg) > 0.55;
+  const text = light ? '#0f172a' : '#f1f5f9';
+  const muted = light ? '#64748b' : '#94a3b8';
+  const border = light ? 'rgba(15,23,42,.13)' : 'rgba(148,163,184,.16)';
+  const surface2mix = light ? 'black 5%' : 'white 6%';
   return `/* ${config.businessName} — tema generado por Fábrica de Apps */
 :root{
   --primary: ${config.colorPrimary};
   --accent: ${config.colorAccent};
   --bg: ${config.colorBg};
   --surface: ${config.colorSurface};
-  --surface2: color-mix(in srgb, ${config.colorSurface} 70%, white 6%);
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --border: rgba(148,163,184,.16);
+  --surface2: color-mix(in srgb, ${config.colorSurface} 70%, ${surface2mix});
+  --text: ${text};
+  --muted: ${muted};
+  --border: ${border};
   --radius: 16px;
   --safe-b: env(safe-area-inset-bottom, 0px);
 }
@@ -126,6 +139,9 @@ body{
 .prod-card:active{ transform:scale(.97); }
 .prod-card.disabled{ opacity:.45; cursor:not-allowed; }
 .prod-emoji{ font-size:40px; }
+.prod-img{ width:100%; height:96px; object-fit:cover; border-radius:12px; background:var(--surface2); }
+.row-img{ width:44px; height:44px; object-fit:cover; border-radius:10px; flex-shrink:0; background:var(--surface2); }
+.detalle-img{ width:100%; max-height:240px; object-fit:cover; border-radius:14px; margin-bottom:10px; background:var(--surface2); }
 .prod-name{ font-size:14px; font-weight:700; line-height:1.25; }
 .prod-price{ font-size:15px; font-weight:800; color:var(--primary); }
 .badge{ font-size:11px; font-weight:700; color:var(--muted); background:var(--surface2); padding:3px 10px; border-radius:999px; }
@@ -239,6 +255,30 @@ body{
 .toast.warn{ border-color:#f59e0b; }
 
 .footer-note{ text-align:center; color:var(--muted); font-size:12px; margin-top:32px; opacity:.7; }
+
+/* ---------- Ticket ---------- */
+.ticket{
+  background:#fff; color:#111; border-radius:12px; padding:18px 16px;
+  font-family:'Courier New',monospace; font-size:13px; margin-bottom:6px;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);
+}
+.ticket-head{ font-weight:800; font-size:16px; text-align:center; letter-spacing:.03em; }
+.ticket-sub{ text-align:center; color:#555; font-size:11px; }
+.ticket-sep{ border-top:1.5px dashed #999; margin:10px 0; }
+.ticket-line{ display:flex; justify-content:space-between; gap:10px; padding:2px 0; }
+.ticket-total{ display:flex; justify-content:space-between; font-weight:800; font-size:16px; padding:4px 0; }
+.ticket-gracias{ text-align:center; font-weight:700; padding-top:4px; }
+
+@media print{
+  body *{ visibility:hidden !important; }
+  #ticketBox, #ticketBox *{ visibility:visible !important; }
+  #ticketBox{ position:absolute; left:0; top:0; width:100%; box-shadow:none; border-radius:0; }
+  .modal-overlay{ position:static !important; background:none !important; backdrop-filter:none !important; }
+}
+
+/* ---------- Entrada suave ---------- */
+#app{ animation:appIn .3s ease; }
+@keyframes appIn{ from{ opacity:0 } to{ opacity:1 } }
 `;
 }
 
