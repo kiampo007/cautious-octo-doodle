@@ -1,4 +1,4 @@
-export type TemplateId = 'pos' | 'catalogo' | 'menu' | 'reservas';
+export type TemplateId = 'pos' | 'catalogo' | 'menu' | 'reservas' | 'tienda' | 'delivery' | 'barberia';
 
 export interface ProductItem {
   id: number;
@@ -8,6 +8,7 @@ export interface ProductItem {
   categoria: string;
   emoji: string;
   descripcion?: string;
+  imagen?: string;
 }
 
 export interface BusinessConfig {
