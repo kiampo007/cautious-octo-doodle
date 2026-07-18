@@ -20,6 +20,8 @@ const PALETAS = [
   { nombre: 'Océano', primary: '#2563eb', accent: '#22d3ee', bg: '#081020', surface: '#0e1a33' },
   { nombre: 'Rosa', primary: '#db2777', accent: '#fbbf24', bg: '#160810', surface: '#241020' },
   { nombre: 'Bosque', primary: '#16a34a', accent: '#f59e0b', bg: '#08120c', surface: '#10231a' },
+  { nombre: '☀️ Día Menta', primary: '#0d9488', accent: '#d97706', bg: '#f0fdfa', surface: '#ffffff' },
+  { nombre: '☀️ Día Coral', primary: '#e11d48', accent: '#0d9488', bg: '#fff7ed', surface: '#ffffff' },
 ];
 
 const EMOJIS = ['🌸', '🧴', '🛍️', '🍽️', '🧋', '✂️', '💅', '📱', '👕', '🐾', '☕', '📚'];

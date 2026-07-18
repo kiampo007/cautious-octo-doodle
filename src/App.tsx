@@ -14,6 +14,9 @@ const EMOJI_DEFAULT: Record<TemplateId, string> = {
   catalogo: '🛍️',
   menu: '🍽️',
   reservas: '📅',
+  tienda: '🏪',
+  delivery: '🛵',
+  barberia: '💈',
 };
 
 const STEPS = ['Plantilla', 'Tu marca', 'Productos', 'Tu app'];
